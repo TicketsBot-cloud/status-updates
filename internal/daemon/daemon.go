@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"time"
 
+	"github.com/TicketsBot-cloud/gdl/objects/channel"
 	"github.com/TicketsBot-cloud/gdl/objects/channel/message"
 	"github.com/TicketsBot-cloud/gdl/objects/interaction/component"
 	"github.com/TicketsBot-cloud/gdl/rest"
@@ -97,6 +98,19 @@ func (d *Daemon) runOnce(ctx context.Context) error {
 				d.logger.Error("Error sending message", zap.Error(err))
 				continue
 			}
+
+			channelInfo, err := rest.GetChannel(ctx, d.config.Discord.Token, nil, d.config.Discord.ChannelId)
+			if err != nil {
+				d.logger.Error("Error retrieving channel info", zap.Error(err))
+				continue
+			}
+
+			if channelInfo.Type == channel.ChannelTypeGuildNews && config.Conf.Discord.ShouldCrosspost {
+				if err := rest.CrosspostMessage(ctx, d.config.Discord.Token, nil, d.config.Discord.ChannelId, msg.Id); err != nil {
+					d.logger.Error("Error crossposting message", zap.Error(err))
+				}
+			}
+
 			d.logger.Info("Discord message sent for incident", zap.String("incident_id", incident.ID), zap.Uint64("message_id", msg.Id))
 
 			// Create role & thread

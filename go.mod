@@ -4,7 +4,7 @@ go 1.24.2
 
 require (
 	github.com/BurntSushi/toml v1.5.0
-	github.com/TicketsBot-cloud/gdl v0.0.0-20250620151147-0571220016b0
+	github.com/TicketsBot-cloud/gdl v0.0.0-20250702201903-758f0cf9c4ed
 	github.com/caarlos0/env/v11 v11.3.1
 	github.com/gin-gonic/gin v1.10.1
 	github.com/jmoiron/sqlx v1.4.0

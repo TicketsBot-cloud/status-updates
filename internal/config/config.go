@@ -18,11 +18,12 @@ type Config struct {
 	} `envPrefix:"DAEMON_"`
 
 	Discord struct {
-		Token        string `env:"TOKEN,required"`
-		PublicKey    string `env:"PUBLIC_KEY,required"`
-		GuildId      uint64 `env:"GUILD_ID,required"`
-		ChannelId    uint64 `env:"CHANNEL_ID,required"`
-		UpdateRoleId uint64 `env:"UPDATE_ROLE_ID,required"`
+		Token           string `env:"TOKEN,required"`
+		PublicKey       string `env:"PUBLIC_KEY,required"`
+		GuildId         uint64 `env:"GUILD_ID,required"`
+		ChannelId       uint64 `env:"CHANNEL_ID,required"`
+		UpdateRoleId    uint64 `env:"UPDATE_ROLE_ID,required"`
+		ShouldCrosspost bool   `env:"SHOULD_CROSSPOST" envDefault:"true"`
 	} `envPrefix:"DISCORD_"`
 
 	StatusPage struct {
