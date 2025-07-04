@@ -1,27 +1,26 @@
 services:
   statuspages_bot:
     build:
-      dockerfile: './dockerfile'
-      args:
-        DAEMON_ENABLED: ${DAMEON_ENABLED:-false}
-        DAEMON_FREQUENCY: ${DAEMON_FREQUENCY:-30s}
-        DAEMON_EXECUTION_TIMEOUT: ${DAEMON_EXECUTION_TIMEOUT:-30m}
-        DISCORD_TOKEN: ${DISCORD_TOKEN}
-        DISCORD_PUBLIC_KEY: ${DISCORD_PUBLIC_KEY}
-        DISCORD_GUILD_ID: ${DISCORD_GUILD_ID}
-        DISCORD_CHANNEL_ID: ${DISCORD_CHANNEL_ID}
-        DISCORD_UPDATE_ROLE_ID: ${DISCORD_UPDATE_ROLE_ID}
-        DISCORD_SHOULD_CROSSPOST: ${DISCORD_SHOULD_CROSSPOST:-true}
-        STATUSPAGE_API_KEY: ${STATUSPAGE_API_KEY}
-        STATUSPAGE_PAGE_ID: ${STATUSPAGE_PAGE_ID}
-        STATUSPAGE_URL: ${STATUSPAGE_URL:-status.ticketsbot.cloud}
-        SERVER_ADDR: ${SERVER_ADDR:-8080}
-        DATABASE_PASSWORD: ${DATABASE_PASSWORD:-null}
-        DATABASE_URI: ${DATABASE_URI:-postgres://postgres:${DATABASE_PASSWORD:-null}@postgres-statusbot:5432/postgres}
-        JSON_LOGS: ${JSON_LOGS:-false}
-        LOG_LEVEL: ${LOG_LEVEL:-info}
+      dockerfile: './.Dockerfile'
+    environment:
+      DAEMON_ENABLED: ${DAMEON_ENABLED:-false}
+      DAEMON_FREQUENCY: ${DAEMON_FREQUENCY:-30s}
+      DAEMON_EXECUTION_TIMEOUT: ${DAEMON_EXECUTION_TIMEOUT:-30m}
+      DISCORD_TOKEN: ${DISCORD_TOKEN}
+      DISCORD_PUBLIC_KEY: ${DISCORD_PUBLIC_KEY}
+      DISCORD_GUILD_ID: ${DISCORD_GUILD_ID}
+      DISCORD_CHANNEL_ID: ${DISCORD_CHANNEL_ID}
+      DISCORD_UPDATE_ROLE_ID: ${DISCORD_UPDATE_ROLE_ID}
+      DISCORD_SHOULD_CROSSPOST: ${DISCORD_SHOULD_CROSSPOST:-true}
+      STATUSPAGE_API_KEY: ${STATUSPAGE_API_KEY}
+      STATUSPAGE_PAGE_ID: ${STATUSPAGE_PAGE_ID}
+      STATUSPAGE_URL: ${STATUSPAGE_URL:-status.ticketsbot.cloud}
+      SERVER_ADDR: :${SERVER_ADDR:-8080}
+      DATABASE_PASSWORD: ${DATABASE_PASSWORD:-null}
+      DATABASE_URI: ${DATABASE_URI:-postgres://postgres:${DATABASE_PASSWORD:-null}@postgres-statusbot:5432/postgres?sslmode=disable}
+      JSON_LOGS: ${JSON_LOGS:-false}
+      LOG_LEVEL: ${LOG_LEVEL:-info}
     ports:
-      # change the ports below to reflect your SERVER_ADDR env variable!
         - '${SERVER_ADDR:-8080}:${SERVER_ADDR:-8080}'
     depends_on:
         postgres:
