@@ -69,7 +69,7 @@ Status Updates is a backend service that keeps your Discord community informed b
 
 ## Configuration
 
-Configuration is managed via environment variables or a config file. See `internal/config/config.go` for all options.
+Configuration is managed via environment variables or a config file. See [envvars.md](envvars.md) for all options.
 
 **Example environment variables:**
 ```env
