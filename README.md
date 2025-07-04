@@ -51,7 +51,30 @@ Status Updates is a backend service that keeps your Discord community informed b
 
 ---
 
-## Installation
+# Installation
+
+## Using Docker
+
+
+1. **Clone the repository:**
+   ```sh
+   git clone https://github.com/TicketsBot-cloud/status-updates.git
+   cd status-updates
+   ```
+2. **Create a .env file by copying the provided [.env.example](./.env.example) file.**
+  Fill out all Env Variables in the sections that are Required.
+3. **Start the Bot**  
+  Run the following command in the directory the Bot's files were copied to:
+  `docker compose up -d`
+4. **Set the Interaction Endpoint URL**
+  Go to the [Discord Developer Portal](https://discord.com/developers/applications) and click on the Application you made for this bot.
+  Set the Interaction Ednpoint URL to your Proxied domain with `/interactions` added behind it. (e.g. `https://{YOUR-CUSTOM-DOMAIN}/interactions`)
+    * You will need to proxy the port you set as your SERVER_ADDR (e.g. 8080) to a Publicly Accessible URL.
+    * Replace `{YOUR-CUSTOM-DOMAIN}` with your proxied URL (e.g. `gateway.example.com`)
+
+
+## Manual
+
 
 1. **Clone the repository:**
    ```sh
@@ -67,7 +90,7 @@ Status Updates is a backend service that keeps your Discord community informed b
    go build -o status-updates ./cmd/status-updates
    ```
 
-## Configuration
+### Configuration
 
 Configuration is managed via environment variables or a config file. See `internal/config/config.go` for all options.
 
@@ -85,7 +108,7 @@ STATUSPAGE_PAGE_ID=statuspage_page_id
 DATABASE_URI=postgres://postgres:postgres@localhost/postgres?sslmode=disable
 ```
 
-## Usage
+### Usage
 
 To run the service locally:
 ```sh
