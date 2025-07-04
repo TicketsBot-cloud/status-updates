@@ -1,5 +1,5 @@
 
-# Discord
+## Discord
 ---
 
 - DISCORD_TOKEN
@@ -10,7 +10,7 @@
 - DISCORD_SHOULD_CROSSPOST <sup>default: `true`</sup>
 
 
-# Statuspage
+## Statuspage
 ---
 
 - STATUSPAGE_API_KEY
@@ -18,29 +18,31 @@
 - STATUSPAGE_URL <sup>default: `status.ticketsbot.cloud`</sup>
 
 
-# Gateway
+## Gateway
 ---
 
 - SERVER_ADDR <sup>default: `8080`</sup>
 
 
-# Database
+## Database
 ---
 
-- DATABASE_URI <sup>default: `postgres://postgres:${DATABASE_PASSWORD:-null}@postgres-statusbot:5432/postgres`</sup>
+**Note:** The default values below are only used when using the provided `docker-compose.yaml` file.
+- DATABASE_URI <sup>default: `postgres://postgres:${DATABASE_PASSWORD:-null}@postgres-statusbot:5432/postgres?sslmode=disable`</sup>
 - DATABASE_PASSWORD <sup>default: `null`</sup>
+
 
 
 # Optional Variables:
 
-# Daemon
+## Daemon
 ---
 
 - DAEMON_ENABLED <sup>default: `false`</sup>
 - DAEMON_FREQUENCY <sup>default: `30s`</sup>
 - DAEMON_EXECUTION_TIMEOUT <sup>default: `30m`</sup>
 
-# Debug
+## Debug
 ---
 
 - JSON_LOGS <sup>default: `false`</sup>
