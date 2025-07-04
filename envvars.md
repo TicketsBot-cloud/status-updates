@@ -5,6 +5,7 @@
 - DAEMON_FREQUENCY <sup>default: 30s</sup>
 - DAEMON_EXECUTION_TIMEOUT <sup>default: 30m</sup>
 
+
 # Discord
 ---
 
@@ -15,6 +16,7 @@
 - DISCORD_UPDATE_ROLE_ID
 - DISCORD_SHOULD_CROSSPOST <sup>default: true</sup>
 
+
 # Statuspage
 ---
 
@@ -22,15 +24,18 @@
 - STATUSPAGE_PAGE_ID 
 - STATUSPAGE_URL <sup>default: status.ticketsbot.cloud</sup>
 
+
 # Gateway
 ---
 
 - SERVER_ADDR <sup>default: 8080</sup>
 
+
 # Database
 ---
 
 - DATABASE_URI
+
 
 # Debug
 ---
