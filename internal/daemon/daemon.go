@@ -89,7 +89,7 @@ func (d *Daemon) runOnce(ctx context.Context) error {
 			d.logger.Info("New incident detected. Sending Discord message...", zap.String("incident_id", incident.ID), zap.String("status", incident.Status))
 			msg, err := rest.CreateMessage(ctx, d.config.Discord.Token, nil, d.config.Discord.ChannelId, rest.CreateMessageData{
 				Components: msgComponents,
-				Flags:      message.SumFlags(message.FlagComponentsV2),
+				Flags:      message.SumFlags(message.FlagIsComponentsV2),
 				AllowedMentions: message.AllowedMention{
 					Roles: []uint64{d.config.Discord.UpdateRoleId},
 				},
@@ -105,7 +105,7 @@ func (d *Daemon) runOnce(ctx context.Context) error {
 				continue
 			}
 
-			if channelInfo.Type == channel.ChannelTypeGuildNews && config.Conf.Discord.ShouldCrosspost {
+			if channelInfo.Type == channel.ChannelTypeGuildAnnouncement && config.Conf.Discord.ShouldCrosspost {
 				if err := rest.CrosspostMessage(ctx, d.config.Discord.Token, nil, d.config.Discord.ChannelId, msg.Id); err != nil {
 					d.logger.Error("Error crossposting message", zap.Error(err))
 				}
@@ -161,7 +161,7 @@ func (d *Daemon) runOnce(ctx context.Context) error {
 				// Update the message if the last update is newer
 				_, err := rest.EditMessage(ctx, d.config.Discord.Token, nil, d.config.Discord.ChannelId, incidentInfo.MessageId, rest.EditMessageData{
 					Components: msgComponents,
-					Flags:      message.SumFlags(message.FlagComponentsV2),
+					Flags:      message.SumFlags(message.FlagIsComponentsV2),
 				})
 				if err != nil {
 					d.logger.Error("Error editing message", zap.Error(err))
@@ -180,7 +180,7 @@ func (d *Daemon) runOnce(ctx context.Context) error {
 						}),
 						updateContainer,
 					},
-					Flags: message.SumFlags(message.FlagComponentsV2),
+					Flags: message.SumFlags(message.FlagIsComponentsV2),
 					AllowedMentions: message.AllowedMention{
 						Roles: []uint64{incidentInfo.RoleId},
 					},

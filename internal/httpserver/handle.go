@@ -61,7 +61,7 @@ func (s *Server) HandleInteraction(ctx *gin.Context) {
 			}
 
 			ctx.JSON(200, interaction.NewResponseChannelMessage(interaction.ApplicationCommandCallbackData{
-				Flags: message.SumFlags(message.FlagEphemeral, message.FlagComponentsV2),
+				Flags: message.SumFlags(message.FlagEphemeral, message.FlagIsComponentsV2),
 				Components: []component.Component{
 					component.BuildContainer(component.Container{
 						Components: []component.Component{
