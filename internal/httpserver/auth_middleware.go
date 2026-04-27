@@ -4,7 +4,7 @@ import (
 	"bytes"
 	"crypto/ed25519"
 	"encoding/hex"
-	"io/ioutil"
+	"io"
 
 	"github.com/gin-gonic/gin"
 	"github.com/pkg/errors"
@@ -24,13 +24,13 @@ func (s *Server) AuthMiddleware(ctx *gin.Context) {
 	}
 
 	// Read the body but make sure it can be consumed again
-	body, err := ioutil.ReadAll(ctx.Request.Body)
+	body, err := io.ReadAll(ctx.Request.Body)
 	if err != nil {
 		_ = ctx.AbortWithError(500, errors.Wrap(err, "Failed to read body"))
 		return
 	}
 
-	ctx.Request.Body = ioutil.NopCloser(bytes.NewBuffer(body))
+	ctx.Request.Body = io.NopCloser(bytes.NewBuffer(body))
 
 	// Verify signature
 	pubKey, err := hex.DecodeString(s.config.Discord.PublicKey)
