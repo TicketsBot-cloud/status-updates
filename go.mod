@@ -2,6 +2,8 @@ module github.com/TicketsBot-cloud/status-updates
 
 go 1.24.2
 
+replace github.com/TicketsBot-cloud/gdl => ../gdl
+
 require (
 	github.com/BurntSushi/toml v1.5.0
 	github.com/TicketsBot-cloud/gdl v0.0.0-20251007163257-7e59b92d02dd
