@@ -85,7 +85,7 @@ func (i Incident) GenerateContainer() component.Component {
 		buttons = append(buttons, component.BuildButton(component.Button{
 			Label:    "Receive Updates",
 			Style:    component.ButtonStyleSecondary,
-			CustomId: fmt.Sprintf("incident-role-%s", i.ID),
+			CustomId: fmt.Sprintf("inc-r-%s", i.ID),
 		}))
 	}
 	return component.BuildContainer(component.Container{
