@@ -33,8 +33,8 @@ func (s *Server) HandleInteraction(ctx *gin.Context) {
 			return
 		}
 
-		if strings.HasPrefix(commandData.Data.AsButton().CustomId, "incident-role-") {
-			incidentId := strings.TrimPrefix(commandData.Data.AsButton().CustomId, "incident-role-")
+		if strings.HasPrefix(commandData.Data.AsButton().CustomId, "inc-r-") {
+			incidentId := strings.TrimPrefix(commandData.Data.AsButton().CustomId, "inc-r-")
 			var incident model.IncidentInfo
 
 			if err := db.Client.Get(&incident, "SELECT * FROM incidents WHERE id = $1", incidentId); err != nil {
